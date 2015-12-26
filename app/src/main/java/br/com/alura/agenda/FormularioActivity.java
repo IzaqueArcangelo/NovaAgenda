@@ -24,10 +24,15 @@ public class FormularioActivity extends AppCompatActivity {
         botaosalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // move do formulário para a lista de alunos.
+                // Move do formulário para a lista de alunos.
                 Toast.makeText(FormularioActivity.this, "Aluno Salvo", Toast.LENGTH_SHORT).show();
-                Intent lista = new Intent(FormularioActivity.this, ListaAlunosActivity.class);
-                startActivity(lista);
+                /** Existe o problema de pilha do android, pois o código abaixo cria uma nova activity
+                 * e não utiliza a que já existe, sendo assim para obter o mesmo comportamento de voltar para
+                 * a activity anterior também é possível utilizar o método finish();
+                 */
+                //Intent lista = new Intent(FormularioActivity.this, ListaAlunosActivity.class);
+                //startActivity(lista);/*
+                finish(); // encerra a activity e retorna para a anterior.
             }
         });
     }
