@@ -11,13 +11,17 @@
         />
 
     <Button
+        android:id="@+id/novo_aluno"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/fundo"/>
+        android:background="@drawable/fundo"
+        />
 
 </RelativeLayout>
