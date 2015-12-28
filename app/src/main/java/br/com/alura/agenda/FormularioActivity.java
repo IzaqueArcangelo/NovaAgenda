@@ -2,6 +2,7 @@ package br.com.alura.agenda;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -26,6 +27,11 @@ public class FormularioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
         helper = new FormularioHelper(this);
+        Intent intent = getIntent();
+        Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
+        if(aluno != null){
+            helper.preencheformulario(aluno);
+        }
         /* remoção do comportamento do botão salvar
         Button botaosalvar = (Button) findViewById(R.id.formulario_salvar);
 
@@ -60,7 +66,11 @@ public class FormularioActivity extends AppCompatActivity {
                 Toast.makeText(FormularioActivity.this, "Aluno Salvo", Toast.LENGTH_SHORT).show();
                 Aluno aluno = helper.getAluno();
                 AlunoDAO dao = new AlunoDAO(FormularioActivity.this);
-                dao.insere(aluno);
+                if(aluno.getId()!=null){
+                    dao.alterar(aluno);
+                }else{
+                    dao.insere(aluno);
+                }
                 dao.close();
                 finish(); // encerra a activity e retorna para a anterior.
                 break;
